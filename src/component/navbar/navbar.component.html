@@ -1,0 +1,68 @@
+<nav class="navbar" role="navigation" aria-label="main navigation" style="box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);">
+    <div class="navbar-brand">
+      <!-- <a style="margin: 10px;">
+        <i class="fa-solid fa-bars fa-xl" style="color: #66b29b;"></i>
+      </a> -->
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a >
+      <!-- <h3 class="has-text-weight-bold">SOCIO Homes</h3> -->
+       <a style="margin-left: 15px;">
+        <img src="../../assets/logo.png" alt="">
+       </a>
+       
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="home" class="navbar-item">
+          Home
+        </a>
+  
+        <a href=".aboutus-section" class="navbar-item">
+          About us
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            Features
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" *ngFor="let i of features">
+              {{i}}
+            </a>
+            
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+              Report an issue
+            </a>
+          </div>
+        </div>
+        <a class="navbar-item">
+          Contact us
+        </a>
+  
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="navbar-item">
+          <i class="fa-solid fa-phone"></i>
+          <a> 99XXXXXXX9</a>
+          </div>
+          <div class="buttons">
+            <a class="button is-primary" style="border-radius: 0rem;" href="enrollsociety">
+              <strong>Enroll your society</strong>
+            </a>
+            <a class="button is-light" style="border-radius: 0rem;" href="login">
+              Society Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
