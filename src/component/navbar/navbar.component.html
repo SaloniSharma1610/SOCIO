@@ -1,14 +1,12 @@
-<nav class="navbar" role="navigation" aria-label="main navigation" style="box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);">
+<nav class="navbar is-dark"  >
     <div class="navbar-brand">
-      <!-- <a style="margin: 10px;">
-        <i class="fa-solid fa-bars fa-xl" style="color: #66b29b;"></i>
-      </a> -->
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a >
+      
+      <!-- <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"> a</span>
+        <span aria-hidden="true">b</span>
+        <span aria-hidden="true">c</span>
+        <span aria-hidden="true">d</span>
+      </a > -->
       <!-- <h3 class="has-text-weight-bold">SOCIO Homes</h3> -->
        <a style="margin-left: 15px;">
         <img src="../../assets/logo.png" alt="">
@@ -17,14 +15,12 @@
     </div>
   
     <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a href="home" class="navbar-item">
-          Home
-        </a>
+      <div class="navbar-start">        
   
-        <a href=".aboutus-section" class="navbar-item">
+        <a href="#aboutus-section" class="navbar-item">
           About us
         </a>
+        <a href="#feature-section" class=" navbar-item">Feature</a>
   
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -48,7 +44,7 @@
   
       </div>
   
-      <div class="navbar-end">
+      <!-- <div class="navbar-end">
         <div class="navbar-item">
           <div class="navbar-item">
           <i class="fa-solid fa-phone"></i>
@@ -61,6 +57,29 @@
             <a class="button is-light" style="border-radius: 0rem;" href="login">
               Society Login
             </a>
+          </div>
+        </div>
+      </div> -->
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <p class="control">
+              <a class="bd-tw-button button" routerLink="/enrollsociety">
+                <span class="icon">
+                  <i class="fa-regular fa-address-card"></i>
+                </span>
+                <span> Enroll your society </span>
+              </a>
+            </p>
+
+            <p class="control">
+              <button class="button is-primary" (click)="redirectToLoginPage()">
+                <span class="icon">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                </span>
+                <span>Society Login</span>
+              </button>
+            </p>
           </div>
         </div>
       </div>

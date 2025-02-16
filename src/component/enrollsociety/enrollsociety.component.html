@@ -1,29 +1,42 @@
+<app-navbar></app-navbar>
 <div class="columns">
     <div class="column is-three-fifths">
         <section class="hero is-medium">
             <div>
                 <div class="container">
-                    <form action="#" class="form">
+                    <form  class="form" [formGroup]="enrollForm">
                     <h2 class="title">Enroll your society</h2>
                     <p class="title-message">Enroll now and get full access to our services.</p>
                     <div class="flex">
                         <label>
-                        <input type="text" class="input" placeholder = "Full Name" required >
+                        <input type="text" class="input" placeholder = "Contractor Name" required formControlName="userName">
                         </label>
                         <label>
-                        <input type="text" class="input" placeholder = "Contact" required  >
+                        <input type="text" class="input" placeholder = "Society Registration no." required formControlName="societyRegNo">
                         </label>
                     </div>
                         <label>
-                            <input type="email"  class="input" style="width: 425px;" placeholder = "Email" required >
+                            <input type="email"  class="input" style="width: 425px;" placeholder = "Contractor Email" required formControlName="email">
                         </label><br>
                         <label>
-                            <input type="text" class="input" style="width: 425px;" placeholder = "Society Name" required >
+                            <input type="number"  class="input" style="width: 425px;" placeholder = "Contractor Contact" required formControlName="contactNo">
                         </label><br>
-                        <!-- <label>
-                            <input type="text" class="input" style="width: 425px;" placeholder = "Select reason" required >
-                        </label> -->
-                    <button class="submit">Submit</button>
+                        <label>
+                            <input type="text" class="input" style="width: 425px;" placeholder = "Society Name" required formControlName="societyName">
+                        </label><br>
+                        <label>
+                            <input type="text" class="input" style="width: 425px;" placeholder = "Society Address" required formControlName="societyAddress">
+                        </label>
+                        <label>
+                            <input type="text" class="input" style="width: 425px;" placeholder = "Contractor Address" required formControlName="address">
+                        </label><br>
+                        <label>
+                            <input type="number" class="input" style="width: 425px;" placeholder = "Contractor Govt. Id" required formControlName="govtIdNo">
+                        </label><br>
+                        <label>
+                            <input type="password" class="password" style="width: 425px;" placeholder = "Contractor password" required formControlName="password">
+                        </label><br>
+                    <button class="submit" (click)="Onsubmit()">Submit</button>
                     <p class="sign-in">Already enrolled ? 
                         <a href="login" style="color: #0090d8">Login</a>
                         </p>

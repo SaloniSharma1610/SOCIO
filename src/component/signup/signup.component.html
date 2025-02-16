@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="columns">
+    <div class="column is-three-fifths">
+        <section class="hero is-medium">
+            <div>
+                <div class="container">
+                    <form action="#" class="form" [formGroup]="signupForm">
+                    <h2 class="title">User Registration</h2>
+                    <p class="title-message">.</p>
+                    <div class="flex">
+                        <label>
+                        <input type="text" class="input" placeholder = "User Name" required formControlName="userName">
+                        </label>
+                        <select name="cars" id="cars" formControlName="societyId" >
+                            <option *ngFor="let i of socityOption" [ngValue]="i.name">{{i.name}}</option>                            
+                          </select>
+                    </div>
+                    
+                        <label>
+                            <input type="email"  class="input" style="width: 425px;" placeholder = "User Email" required formControlName="userEamil">
+                        </label><br>
+                        <label>
+                            <input type="number"  class="input" style="width: 425px;" placeholder = "User Contact" required formControlName="userContact">
+                        </label><br>
+                        <label>
+                            <input type="text" class="input" style="width: 425px;" placeholder = "User Address" required formControlName="userAddress">
+                        </label><br>
+                    
+                        <label>
+                            <input type="number" class="input" style="width: 425px;" placeholder = "User Govt. Id" required formControlName="govtIdNo">
+                        </label><br>
+                        <label>
+                            <input type="password" class="password" style="width: 425px;" placeholder = "Contractor password" required formControlName="password">
+                        </label><br>
+                    <button class="submit" (click)="Onsubmit()">Submit</button>
+                    <p class="sign-in">Already enrolled ? 
+                        <a href="login" style="color: #0090d8">Login</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="column ">
+        <section class="hero is-medium">
+            <div class="hero-body">
+              <p class="title" style="font-family: Raleway, sans-serif; font-size:50px; line-height: 45px;">Welcome to SOCIO Homes</p>
+              <p class="subtitle">Small subtitle</p>
+            </div>
+        </section>
+    </div>
+   
+</div>
+

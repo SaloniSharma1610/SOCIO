@@ -5,13 +5,14 @@ import { HomepageComponent } from '../component/homepage/homepage.component';
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SignupComponent } from '../component/signup/signup.component';
 
 export const routes: Routes = [  
     { path: '',  component: HomepageComponent },  
     { path: 'login', component: LoginComponent }, 
-    {path: 'enrollsociety', component: EnrollsocietyComponent},
-    {path: 'home', component: HomepageComponent},
+    {path: 'enrollsociety', component: EnrollsocietyComponent},    
     {path:'dashboard', component: DashboardComponent},
+    {path:'signup', component: SignupComponent},
     { path: '**', redirectTo: '' } // Redirect to home page for invalid routes
 ];
 

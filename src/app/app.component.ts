@@ -6,12 +6,12 @@ import { NavbarComponent } from '../component/navbar/navbar.component';
 import { HomepageComponent } from '../component/homepage/homepage.component';
 import { FooterComponent } from '../component/footer/footer.component';
 import { HttpserviceService } from '../services/httpservice.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule,CommonModule,NavbarComponent, HomepageComponent,FooterComponent],
+  imports: [RouterOutlet,FormsModule,CommonModule,NavbarComponent, HomepageComponent,FooterComponent,RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

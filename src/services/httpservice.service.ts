@@ -1,15 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { EnrollBody} from './type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpserviceService {
 
-  // constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  // getInfo(){
-  //   return this.http.get("http://localhost:8888/api/user/allUsers");
-  // }
+  getAllSocietyIds(){
+    return this.http.get("http://localhost:8080/society/getAllIds");
+  }
+  
 
+  enrollSociety(body:any){
+    return this.http.post("http://localhost:8080/society/save", body);
+  }
 }
