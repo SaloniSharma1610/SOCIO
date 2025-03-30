@@ -86,8 +86,11 @@ textarea {
   width: 100%;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
+  
 }
-
+textarea{
+  resize:none;
+}
 .wrapper > * {
   padding: 1em;
 }
@@ -155,4 +158,7 @@ button:focus , .submit-btn:focus{
 .error {
   color: #47c8b5fc;
 }
-
+small{
+  color: red;
+  font-size: small;
+}

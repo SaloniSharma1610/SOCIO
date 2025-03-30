@@ -1,54 +1,94 @@
 <app-navbar></app-navbar>
-<div class="columns">
-    <div class="column is-three-fifths">
-        <section class="hero is-medium">
-            <div>
-                <div class="container">
-                    <form action="#" class="form" [formGroup]="signupForm">
-                    <h2 class="title">User Registration</h2>
-                    <p class="title-message">.</p>
-                    <div class="flex">
-                        <label>
-                        <input type="text" class="input" placeholder = "User Name" required formControlName="userName">
-                        </label>
-                        <select name="cars" id="cars" formControlName="societyId" >
-                            <option *ngFor="let i of socityOption" [ngValue]="i.name">{{i.name}}</option>                            
-                          </select>
-                    </div>
-                    
-                        <label>
-                            <input type="email"  class="input" style="width: 425px;" placeholder = "User Email" required formControlName="userEamil">
-                        </label><br>
-                        <label>
-                            <input type="number"  class="input" style="width: 425px;" placeholder = "User Contact" required formControlName="userContact">
-                        </label><br>
-                        <label>
-                            <input type="text" class="input" style="width: 425px;" placeholder = "User Address" required formControlName="userAddress">
-                        </label><br>
-                    
-                        <label>
-                            <input type="number" class="input" style="width: 425px;" placeholder = "User Govt. Id" required formControlName="govtIdNo">
-                        </label><br>
-                        <label>
-                            <input type="password" class="password" style="width: 425px;" placeholder = "Contractor password" required formControlName="password">
-                        </label><br>
-                    <button class="submit" (click)="Onsubmit()">Submit</button>
-                    <p class="sign-in">Already enrolled ? 
-                        <a href="login" style="color: #0090d8">Login</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="column ">
-        <section class="hero is-medium">
-            <div class="hero-body">
-              <p class="title" style="font-family: Raleway, sans-serif; font-size:50px; line-height: 45px;">Welcome to SOCIO Homes</p>
-              <p class="subtitle">Small subtitle</p>
-            </div>
-        </section>
-    </div>
-   
+  <div class="container">
+    <div class="registration-box">
+      <h2>Create Account</h2>
+      <form id="registration-form" [formGroup]="signupForm" (ngSubmit)="Onsubmit()">
+        <div class="input-group">
+          <label for="username">Full Name</label>
+          <input type="text" id="username" placeholder="Enter your name" formControlName="userName" required>
+          <small *ngIf="this.signupForm.controls['userName'].invalid && (this.signupForm.controls['userName'].touched||this.signupForm.controls['userName'].dirty)">*required field</small>
+        </div>
+
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" formControlName="userEmail" required>
+          <small *ngIf="this.signupForm.controls['userEmail'].invalid && (this.signupForm.controls['userEmail'].touched||this.signupForm.controls['userEmail'].dirty)">
+            <span *ngIf="this.signupForm.controls['userEmail'].errors?.['required']">*required field</span>
+            <span *ngIf="this.signupForm.controls['userEmail'].errors?.['email']">*Please enter valid email</span>
+        </small>
 </div>
 
+        <div class="input-group">
+            <label for="society">Select Society</label>
+            <select class="input-group" id="society" formControlName="societyId" required>
+              <option value="">Select a society</option>
+              <option value="society1" >Society 1</option>
+              <option value="society2">Society 2</option>
+              <option value="society3">Society 3</option>
+            </select>
+            <small *ngIf="this.signupForm.controls['societyId'].invalid && (this.signupForm.controls['societyId'].touched||this.signupForm.controls['societyId'].dirty)">*required field</small>
+        </div>
+
+        <div class="input-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="Enter your address" formControlName="userAddress" required>
+            <small *ngIf="this.signupForm.controls['userAddress'].invalid && (this.signupForm.controls['userAddress'].touched||this.signupForm.controls['userAddress'].dirty)">*required field</small>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Phone Number</label>
+            <input type="number" id="email" placeholder="Enter your phone number" formControlName="userContact" required>
+            <small *ngIf="this.signupForm.controls['userContact'].invalid && (this.signupForm.controls['userContact'].touched||this.signupForm.controls['userContact'].dirty)">
+                <span *ngIf="this.signupForm.controls['userContact'].errors?.['required']">*required field</span>
+                <span *ngIf="this.signupForm.controls['userContact'].errors?.['pattern']">*Please enter valid contact</span>
+            </small>    
+        </div>
+
+        <div class="input-group">
+            <label for="email">Government ID Number</label>
+            <input type="number" id="email" placeholder="Enter your Id number" formControlName="govtIdNo" required>
+            <small *ngIf="this.signupForm.controls['govtIdNo'].invalid && (this.signupForm.controls['govtIdNo'].touched||this.signupForm.controls['govtIdNo'].dirty)">*required field</small>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+            <div class="pass-input input-group">
+                <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="Create your password" formControlName="password" required>
+                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+            </div>
+            <small *ngIf="this.signupForm.controls['password'].invalid && (this.signupForm.controls['password'].touched||this.signupForm.controls['password'].dirty)">
+                <span *ngIf="this.signupForm.controls['password'].errors?.['required']">*required field</span>
+                <span *ngIf="this.signupForm.controls['password'].errors?.['minlength']">*Password must be at least 8 characters long</span>
+                <span *ngIf="this.signupForm.controls['password'].errors?.['maxlength']">*Password must be at most 10 characters long</span>
+                <span *ngIf="this.signupForm.controls['password'].errors?.['pattern']">
+                    *Password must include:
+                        <ul>
+                            <li>At least one uppercase letter (A-Z)</li>
+                            <li>At least one lowercase letter (a-z)</li>
+                            <li>At least one number (0-9)</li>
+                            <li>At least one special character</li>
+                        </ul>
+                </span>
+
+            </small>
+    </div>
+
+        <div class="terms">
+          <input type="checkbox" id="terms" formControlName="isAgree" required>
+          <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+        </div>
+        <div class="reg_btn">
+        <input type="submit" class="submit-btn" [disabled]="signupForm.invalid" value="Register">
+        </div>
+      </form>
+
+      <p class="login-link">Already have an account? <a routerLink="/login">Login here</a></p>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="submitted">
+    <div class="modal-content">
+        <p>Successfully Registered!</p>
+        <button (click)="closePopup()">OK</button>
+    </div>
+</div>

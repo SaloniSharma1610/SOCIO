@@ -16,13 +16,15 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">        
-  
+        <a href="homepage-section" class="navbar-item">
+          Home
+        </a>
         <a href="#aboutus-section" class="navbar-item">
           About us
         </a>
-        <a href="#feature-section" class=" navbar-item">Feature</a>
+        <a href="#feature-section" class=" navbar-item">Features</a>
   
-        <div class="navbar-item has-dropdown is-hoverable">
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             Features
           </a>
@@ -37,8 +39,8 @@
               Report an issue
             </a>
           </div>
-        </div>
-        <a class="navbar-item">
+        </div> -->
+        <a href="#contactus-section" class="navbar-item">
           Contact us
         </a>
   
@@ -64,7 +66,7 @@
         <div class="navbar-item">
           <div class="field is-grouped">
             <p class="control">
-              <a class="bd-tw-button button" routerLink="/enrollsociety">
+              <a class="bd-tw-button button" routerLink="/enrollsociety" style="border-radius: 0%;">
                 <span class="icon">
                   <i class="fa-regular fa-address-card"></i>
                 </span>
@@ -73,12 +75,20 @@
             </p>
 
             <p class="control">
-              <button class="button is-primary" (click)="redirectToLoginPage()">
+              <button class="button is-primary" (click)="redirectToLoginPage()"  style="border-radius: 0%;">
                 <span class="icon">
                   <i class="fa-solid fa-right-to-bracket"></i>
                 </span>
-                <span>Society Login</span>
+                <span>Login</span>
               </button>
+            </p>
+            <p class="control">
+              <a class="bd-tw-button button" routerLink="/signup" style="border-radius: 0%;">
+                <span class="icon">
+                  <i class="fa-regular fa-address-card"></i>
+                </span>
+                <span>Signup</span>
+              </a>
             </p>
           </div>
         </div>

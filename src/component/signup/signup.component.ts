@@ -1,56 +1,76 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpserviceService } from '../../services/httpservice.service';
+import { Router,RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [NavbarComponent,FormsModule, ReactiveFormsModule,CommonModule],
+  imports: [NavbarComponent,FormsModule,ReactiveFormsModule,CommonModule,RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
+  
+  showPassword: boolean = false;
+  signupForm:FormGroup;
+  submitted:boolean=false;
   
   society:string="";
   socityOption: any[] = [];
+  
 
-  signupForm=new FormGroup({
-    userName:new FormControl(''),
-    societyId:new FormControl(this.society),
-      userEmail:new FormControl(''),
-      userContact:new FormControl(''),
-      userAddress:new FormControl(''),
-      govtIdNo:new FormControl(''),
-      password:new FormControl('')
-    });
-
-    constructor(private http:HttpserviceService){     
-      this.fetchAllSocietyOptions();
+    constructor(private http:HttpserviceService,private formBuilder: FormBuilder){  
+      this.signupForm=this.formBuilder.group({
+        userName:new FormControl('',[Validators.required]),
+        societyId:new FormControl(this.society,Validators.required),
+          userEmail:new FormControl('',[Validators.required,Validators.email]),
+          userContact:new FormControl('',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]),
+          userAddress:new FormControl('',[Validators.required]),
+          govtIdNo:new FormControl('',[Validators.required]),
+          password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(10),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%&*]).{8,10}$/)]),
+          isAgree:new FormControl(false,[Validators.required])
+        });
+      // this.fetchAllSocietyOptions();
     }
 
 
     ngOnInit(): void {
       
     } 
+    
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+  closePopup() {
+    this.submitted = false;
+  }
 
-
-    fetchAllSocietyOptions(){
-      this.http.getAllSocietyIds().subscribe((val:any)=>{
-        val.forEach((element:any) => {
-          let temp={name:element}
-          this.socityOption.push(temp);
+  //   // fetchAllSocietyOptions(){
+  //   //   this.http.getAllSocietyIds().subscribe((val:any)=>{
+  //   //     val.forEach((element:any) => {
+  //   //       let temp={name:element}
+  //   //       this.socityOption.push(temp);
           
-        });
-      });
+  //   //     });
+  //   //   });
+    // }
+
+  Onsubmit(){
+    if (this.signupForm.valid) {
+      this.submitted = true; // Show success message
+      setTimeout(() => {
+        this.submitted = false; // Hide after 3 seconds
+        this.signupForm.reset(); // Reset form
+      }, 3000);
     }
 
-    Onsubmit(){
-      console.log(this.signupForm);
-      console.log(this.society);
-      
-    } 
+  } 
+
+
+
 }

@@ -3,30 +3,40 @@
   
       <div class="form">
         <h2 class="form-headline">Contact Us</h2>
-        <form id="submit-form" action="">
+        <form id="submit-form" [formGroup]="contactForm" (ngOnSubmit)="Onsubmit()">
           <p>
-            <input id="name" class="form-input" type="text" placeholder="Your Name*">
-            <small class="name-error"></small>
+            <input id="name" class="form-input" type="text" placeholder="Your Name*" formControlName="yourName">
+            <small *ngIf="this.contactForm.controls['yourName'].invalid && (this.contactForm.controls['yourName'].touched||this.contactForm.controls['yourName'].dirty)">*required field</small>
           </p>
           <p>
-            <input id="email" class="form-input" type="email" placeholder="Your Email*">
-            <small class="name-error"></small>
+            <input id="email" class="form-input" type="email" placeholder="Your Email*"formControlName="youremail">
+            <small *ngIf="this.contactForm.controls['youremail'].invalid && (this.contactForm.controls['youremail'].touched||this.contactForm.controls['youremail'].dirty)">
+              <span *ngIf="this.contactForm.controls['youremail'].errors?.['required']">*required field</span>
+              <span *ngIf="this.contactForm.controls['youremail'].errors?.['email']">*Please enter valid email</span>
+            </small>
           </p>
           <p>
-            <input id="company-name" class="form-input" type="text" placeholder="Company Name*">
-            <small class="name-error"></small>
+            <input id="company-name" class="form-input" type="text" placeholder="Society Name*" formControlName="societyName">
+            <small *ngIf="this.contactForm.controls['societyName'].invalid && (this.contactForm.controls['societyName'].touched||this.contactForm.controls['societyName'].dirty)">*required field</small>
+
           </p>
           <p>
-            <input id="contact" class="form-input" type="number" placeholder="Your Contact*">
-            <small class="name-error"></small>
+            <input id="contact" class="form-input" type="number" placeholder="Your Contact*" formControlName="contactNo">
+            <small *ngIf="this.contactForm.controls['contactNo'].invalid && (this.contactForm.controls['contactNo'].touched||this.contactForm.controls['contactNo'].dirty)">
+              <span *ngIf="this.contactForm.controls['contactNo'].errors?.['required']">*required field</span>
+                    <span *ngIf="this.contactForm.controls['contactNo'].errors?.['pattern']">*Please enter valid contact</span>
+            </small> 
           </p>
           <p class="full-width">
-            <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
-            <small></small>
+            <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required formControlName="message"></textarea>
+            <small *ngIf="this.contactForm.controls['message'].invalid && (this.contactForm.controls['message'].touched||this.contactForm.controls['message'].dirty)">
+              <span *ngIf="this.contactForm.controls['message'].errors?.['required']">*required field</span>
+                    <span *ngIf="this.contactForm.controls['message'].errors?.['minlength']">*Message should be at least 20 character long</span>
+            </small>
           </p>
           <p class="full-width">
-            <input type="submit" class="submit-btn" value="Submit">
-            <button class="reset-btn">Reset</button>
+            <button type="submit" class="submit-btn" (click)="Onsubmit()">Submit</button>
+            <button class="reset-btn" (click)="OnReset()">Reset</button>
           </p>
         </form>
       </div>
