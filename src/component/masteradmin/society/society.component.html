@@ -1,0 +1,35 @@
+
+<div class="main-content">
+
+  
+    
+    <!-- Requests Table -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Society ID</th>
+            <th>User ID</th>
+            <th>Status</th>
+            <th>Requested role</th>
+            <th>Flat No.</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of data" class="text-center">
+            <td >{{ user.societyId }}</td>
+            <td >{{ user.userId }}</td>
+            <td ><span class="badge medium">{{ user.status }}</span></td>
+            <td >{{ user.requestedRole }}</td>
+            <td >{{ user.flatNo }}</td>
+            <td>
+              <button class="action-button" (click)="onApprove(user)">Approve</button>
+              <button class="action-button" (click)="onReject()">Reject</button>
+            </td>
+          </tr>
+       
+        </tbody>
+      </table>
+    </div>
+  </div>

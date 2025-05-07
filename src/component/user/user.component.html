@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div   *ngIf="rolesDetails===null">
+  
+    <div class="onboarding-container">
+        <h2>👋 Welcome, {{ userEntity.fullName }}</h2>
+      
+        <div class="info-card">
+          <p><strong>Username:</strong> {{ userEntity.userName }}</p>
+          <p><strong>Email:</strong> {{ userEntity.userEmail }}</p>
+          <p><strong>Contact:</strong> {{ userEntity.userContact }}</p>
+          <p><strong>Govt ID:</strong> {{ userEntity.govtIdNo }}</p>
+          <p><strong>Address:</strong> {{ userEntity.userAddress }}</p>
+        </div>
+      
+        <div class="form-section">
+          <label for="society">🏢 Select Society:</label>
+          <select id="society" class="dropdown" [(ngModel)]="selectedSociety" >
+            <option value="" disabled selected>Select a society</option>
+            <div *ngFor="let option of societyList">
+                <option value="{{option.societyId}}">{{option.societyName}}</option>  
+            </div>
+                     
+          </select>
+          
+            <label for="society">🏢 Flat Number:</label>
+            <input type="text" placeholder="Enter flat number"class="dropdown" [(ngModel)]="flatNo">
+        
+          <label for="role">🧑‍💼 Select Role:</label>
+          <select id="role" class="dropdown" [(ngModel)]="selectedRole">
+            <option value="" disabled selected>Select a role</option>
+            <option value="societyadmin">Admin</option>
+            <option value="resident">Resident</option>
+          </select>
+        </div>
+      
+        <div class="button-row">
+          <button class="btn enroll" (click)="onEnroll()">✅ Enroll</button>
+        </div>
+      </div>
+      
+</div>
+
+<div  *ngIf="(rolesDetails!=null && rolesDetails.societyId!=null)">
+    <div class="message-container">
+        <div class="message-box">
+          <h2>📬Your request is pending with Admin</h2>
+          <p>Please connect to concerned society Admin for further process!</p>
+        </div>
+      </div>
+</div>
+<div  *ngIf="(rolesDetails!=null && rolesDetails.societyId=='resident')">
+    User is a resident for society
+</div>

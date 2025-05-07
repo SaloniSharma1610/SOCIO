@@ -12,39 +12,9 @@
                 <small *ngIf="this.enrollForm.controls['societyName'].invalid && (this.enrollForm.controls['societyName'].touched||this.enrollForm.controls['societyName'].dirty)">*required field</small>
             </div>
             <div class="input_box">
-                <label for="username">Contractor Name</label>
-                <input type="text" id="username" placeholder="Enter your name" formControlName="userName" required>
-                <small *ngIf="this.enrollForm.controls['userName'].invalid && (this.enrollForm.controls['userName'].touched||this.enrollForm.controls['userName'].dirty)">*required field</small>
-            </div>
-            <div class="input_box">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" formControlName="email" required>
-                <small *ngIf="this.enrollForm.controls['email'].invalid && (this.enrollForm.controls['email'].touched||this.enrollForm.controls['email'].dirty)">
-                    <span *ngIf="this.enrollForm.controls['email'].errors?.['required']">*required field</span>
-                    <span *ngIf="this.enrollForm.controls['email'].errors?.['email']">*Please enter valid email</span>
-
-                </small>
-                
-            </div>
-            <div class="input_box">
-                <label for="phone">Phone Number</label>
-                <input type="number" id="phone" placeholder="Enter your number" formControlName="contactNo" required>
-                <small *ngIf="this.enrollForm.controls['contactNo'].invalid && (this.enrollForm.controls['contactNo'].touched||this.enrollForm.controls['contactNo'].dirty)">
-                    <span *ngIf="this.enrollForm.controls['contactNo'].errors?.['required']">*required field</span>
-                    <span *ngIf="this.enrollForm.controls['contactNo'].errors?.['pattern']">*Please enter valid contact</span>
-                </small>
-
-            </div>
-            <div class="input_box">
-                <label for="name">Contractor Address</label>
-                <input type="text" id="name" placeholder="Enter your address" formControlName="address" required>
-                <small *ngIf="this.enrollForm.controls['address'].invalid && (this.enrollForm.controls['address'].touched||this.enrollForm.controls['address'].dirty)">*required field</small>
-            </div>
-            <div class="input_box">
-                <label for="name">Government Id</label>
-                <input type="text" id="name" placeholder="Enter your govt. id" formControlName="govtIdNo" required>
-                <small *ngIf="this.enrollForm.controls['govtIdNo'].invalid && (this.enrollForm.controls['govtIdNo'].touched||this.enrollForm.controls['govtIdNo'].dirty)">*required field</small>
-
+                <label for="name">Number of Flats</label>
+                <input type="number" id="name" placeholder="Enter the no. of flats" formControlName="noOfFlats" required>
+                <small *ngIf="this.enrollForm.controls['noOfFlats'].invalid && (this.enrollForm.controls['noOfFlats'].touched||this.enrollForm.controls['noOfFlats'].dirty)">*required field</small>
             </div>
             <div class="input_box">
                 <label for="name">Society Address</label>
@@ -52,60 +22,19 @@
                 <small *ngIf="this.enrollForm.controls['societyAddress'].invalid && (this.enrollForm.controls['societyAddress'].touched||this.enrollForm.controls['societyAddress'].dirty)">*required field</small>
             </div>
             <div class="input_box">
+                <label for="name">Government Id</label>
+                <input type="text" id="name" placeholder="Enter society govt. id" formControlName="govtIdNo" required>
+                <small *ngIf="this.enrollForm.controls['govtIdNo'].invalid && (this.enrollForm.controls['govtIdNo'].touched||this.enrollForm.controls['govtIdNo'].dirty)">*required field</small>
+            </div>
+            
+            <div class="input_box">
                 <label for="name">Society Registration Number</label>
                 <input type="text" id="name" placeholder="Enter registration number" formControlName="societyRegNo" required>
                 <small *ngIf="this.enrollForm.controls['societyRegNo'].invalid && (this.enrollForm.controls['societyRegNo'].touched||this.enrollForm.controls['societyRegNo'].dirty)">*required field</small>
-
             </div>
-            <div class="input_box">
-                <label for="pass">Password</label>
-                <div class="pass-input">
-                <input [type]="showPassword ? 'text' : 'password'" id="pass" placeholder="Enter your password" formControlName="password" required>
-                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
-                </div>
-                <small *ngIf="this.enrollForm.controls['password'].invalid && (this.enrollForm.controls['password'].touched||this.enrollForm.controls['password'].dirty)">
-                    <span *ngIf="this.enrollForm.controls['password'].errors?.['required']">*required field</span>
-                    <span *ngIf="this.enrollForm.controls['password'].errors?.['minlength']">*Password must be at least 8 characters long</span>
-                    <span *ngIf="this.enrollForm.controls['password'].errors?.['maxlength']">*Password must be at most 10 characters long</span>
-                    <span *ngIf="this.enrollForm.controls['password'].errors?.['pattern']">
-                        *Password must include:
-                            <ul>
-                                <li>At least one uppercase letter (A-Z)</li>
-                                <li>At least one lowercase letter (a-z)</li>
-                                <li>At least one number (0-9)</li>
-                                <li>At least one special character</li>
-                            </ul>
-                    </span>
-
-                </small>
-            </div>
+            
         </div>
-        <div class="gender">
-            <span class="gender_title">Gender</span>
-            <input type="radio" name="gender" id="radio_1" formControlName="gender" value="Male">
-                <div class="category">
-                    <label for="radio_1">
-                        <span class="dot one"></span>
-                        <span>Male</span>
-                    </label>
-                </div> 
-            <input type="radio" name="gender" id="radio_2" formControlName="gender" value="Female">
-                <div class="category">
-                    <label for="radio_2">
-                        <span class="dot two"></span>
-                        <span>Female</span>
-                    </label>
-                </div>
-            <input type="radio" name="gender" id="radio_3" formControlName="gender" value="Prefer not to say">
-                <div class="category">
-                    <label for="radio_3">
-                        <span class="dot three"></span>
-                        <span>Prefer not to say</span>
-                    </label>
-                </div>    
-            <small *ngIf="submitted && this.enrollForm.controls['gender'].invalid">*Please select a gender</small>
-           
-        </div>
+        
         <div class="reg_btn">
             <input type="submit" value="Enroll" [disabled]="enrollForm.invalid">
         </div>
@@ -115,9 +44,9 @@
     </form>
 </div>
 
-<div class="modal" *ngIf="submitted">
+<div class="modal" *ngIf="this.message">
     <div class="modal-content">
-        <p>Successfully Registered!</p>
+        <p>{{message}}</p>
         <button (click)="closePopup()">OK</button>
     </div>
 </div>

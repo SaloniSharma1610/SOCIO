@@ -1,0 +1,99 @@
+<app-navbar></app-navbar>
+  <div class="dashboard">
+    <!-- Sidebar -->
+
+      <aside class="sidebar">
+        <ul class="top-list">
+          <li><a (click)="switchSection('ddash')">Your Details</a></li>
+          <li><a  (click)="switchSection('society')">Raise Complaints</a></li>
+
+        </ul>
+
+        <!-- Bottom Menu -->
+          <ul class="bottom-list">
+            <li><a (click)="openLogoutPopup()">Logout</a></li>
+          </ul>
+          <!-- Logout Popup -->
+          <div *ngIf="showLogoutPopup" class="logout-popup-overlay" (click)="closeLogoutPopup()">
+            <div class="logout-popup-card" (click)="$event.stopPropagation()">
+              <h2>Are you sure you want to logout?</h2>
+              <div class="logout-popup-actions">
+                <button class="cancel-btn" (click)="closeLogoutPopup()">Cancel</button>
+                <button class="confirm-logout-btn" (click)="Onlogout()">Logout</button>
+              </div>
+            </div>
+          </div>
+      </aside>
+   
+    <!-- Main Content -->
+   
+    <main class="main-content" [ngSwitch]="activeSection">
+          <div *ngSwitchCase="'ddash'">
+            <!-- Statistics -->
+                <div class="statistics">
+                    <div class="stat-card" *ngFor="let flat of flatGroups.block1" (click)="openFlatDetails(flat)">
+                    <h5>Society no.</h5>
+                    <h2>{{flat}}</h2>
+                    </div>
+                </div>
+                
+                <div class="statistics">
+                    <div class="stat-card" *ngFor="let flat of flatGroups.block2" (click)="openFlatDetails(flat)">
+                    <h5>Society no.</h5>
+                    <h2>{{flat}}</h2>
+                    </div>
+                </div>
+            
+                <!-- Pop-Up -->
+                <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+                    <div class="popup" (click)="$event.stopPropagation()">
+                    <h3>Flat Details</h3>
+                    <p><strong>Flat No:</strong> {{ selectedFlat }}</p>
+                    <p><strong>Owner:</strong> John Doe</p>
+                    <p><strong>Type:</strong> 2BHK</p>
+                    <p><strong>Status:</strong> Occupied</p>
+                    <button (click)="closePopup()">Close</button>
+                    </div>
+                </div>
+          </div>
+          <div *ngSwitchCase="'society'">
+            <h3>Complaint Form</h3>
+              <form  [formGroup]="complaintsForm" (ngSubmit)="Onsubmit()">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name"formControlName="residentName" required>
+                <small *ngIf="this.complaintsForm.controls['residentName'].invalid && (this.complaintsForm.controls['residentName'].touched||this.complaintsForm.controls['residentName'].dirty)">*required field</small>
+                <label for="phone">Flat Number</label>
+                <input type="tel" id="phone" name="phone" formControlName="flatNumber" required>
+                <small *ngIf="this.complaintsForm.controls['flatNumber'].invalid && (this.complaintsForm.controls['flatNumber'].touched||this.complaintsForm.controls['flatNumber'].dirty)">*required field</small>
+
+                <label for="category">Category</label>
+                <select id="category" name="category" formControlName="complaintType" required>
+                  <option value="">Select category</option>
+                  <option value="service">Service</option>
+                  <option value="product">Maintenance</option>
+                  <option value="billing">Security</option>
+                  <option value="other">Other</option>
+                </select>
+               <small *ngIf="this.complaintsForm.controls['complaintType'].invalid && (this.complaintsForm.controls['complaintType'].touched||this.complaintsForm.controls['complaintType'].dirty)">*required field</small>
+               
+                <label for="details">What is the issue?</label>
+                <textarea id="details" name="details" rows="5" formControlName="complaintText" required></textarea>
+                <small *ngIf="this.complaintsForm.controls['complaintText'].invalid && (this.complaintsForm.controls['complaintText'].touched||this.complaintsForm.controls['complaintText'].dirty)">*required field</small>
+                <small *ngIf="complaintsForm.get('complaintText')?.errors?.['maxLength']">
+                  Maximum 250 characters allowed. 
+                </small>
+                <input type="submit" value="Raise complaint" [disabled]="complaintsForm.invalid">
+              </form>
+          </div>
+    </main>
+
+  </div>
+
+  <!-- submit message pop up -->
+   <div class="modal" *ngIf="this.message">
+    <div class="modal-content">
+        <p>{{this.message}}</p>
+        <button (click)="closePopup2()">OK</button>
+    </div>
+</div>
+

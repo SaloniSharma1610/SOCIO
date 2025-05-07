@@ -1,28 +1,13 @@
-
-  <nav class="navbar is-dark headnav"  >
-    <div class="navbar-brand">
-       <a style="margin:14px;">
-        <img src="../../assets/logo.png" alt="">
-       </a>
-       <h3 class="logo-Text">SOCIO Homes</h3>
-    </div>
-    <div class="navbar-right">
-      <span class="username">{{userName}}</span>
-      <img src="assets/profile-pic.png" alt="Profile" class="profile-pic">
-    </div>
-      
-  </nav>
-
-
+<app-navbar></app-navbar>
   <div class="dashboard">
     <!-- Sidebar -->
 
       <aside class="sidebar">
     
+        
         <ul class="top-list">
           <li><a (click)="switchSection('ddashboard')">Dashboard</a></li>
           <li><a  (click)="switchSection('society'); ">Role Management</a></li>
- 
         </ul>
 
         <!-- Bottom Menu -->
@@ -35,7 +20,7 @@
               <h2>Are you sure you want to logout?</h2>
               <div class="logout-popup-actions">
                 <button class="cancel-btn" (click)="closeLogoutPopup()">Cancel</button>
-                <button class="confirm-logout-btn" (click)="logout()">Logout</button>
+                <button class="confirm-logout-btn" (click)="Onlogout()">Logout</button>
               </div>
             </div>
           </div>

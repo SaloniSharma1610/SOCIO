@@ -1,0 +1,94 @@
+<app-navbar></app-navbar>
+  <div class="dashboard">
+    <!-- Sidebar -->
+
+      <aside class="sidebar">
+        <ul class="top-list">
+          <li><a (click)="switchSection('ddash')">Dashboard</a></li>
+          <li><a  (click)="switchSection('society'); getPendingRequest()">Resident Management</a></li>
+
+        </ul>
+
+        <!-- Bottom Menu -->
+          <ul class="bottom-list">
+            <li><a (click)="openLogoutPopup()">Logout</a></li>
+          </ul>
+          <!-- Logout Popup -->
+          <div *ngIf="showLogoutPopup" class="logout-popup-overlay" (click)="closeLogoutPopup()">
+            <div class="logout-popup-card" (click)="$event.stopPropagation()">
+              <h2>Are you sure you want to logout?</h2>
+              <div class="logout-popup-actions">
+                <button class="cancel-btn" (click)="closeLogoutPopup()">Cancel</button>
+                <button class="confirm-logout-btn" (click)="Onlogout()">Logout</button>
+              </div>
+            </div>
+          </div>
+      </aside>
+   
+    <!-- Main Content -->
+   
+    <main class="main-content" [ngSwitch]="activeSection" ngSubmit="Onsubmit()">
+          <div *ngSwitchCase="'ddash'">
+            <!-- Statistics -->
+                <div class="statistics">
+                    <div class="stat-card" *ngFor="let flat of flatGroups.block1" (click)="openFlatDetails(flat)">
+                    <h5>Society no.</h5>
+                    <h2>{{flat}}</h2>
+                    </div>
+                </div>
+                
+                <div class="statistics">
+                    <div class="stat-card" *ngFor="let flat of flatGroups.block2" (click)="openFlatDetails(flat)">
+                    <h5>Society no.</h5>
+                    <h2>{{flat}}</h2>
+                    </div>
+                </div>
+            
+                <!-- Pop-Up -->
+                <div class="popup-overlay" *ngIf="showPopup" (click)="closePopup()">
+                    <div class="popup" (click)="$event.stopPropagation()">
+                    <h3>Flat Details</h3>
+                    <p><strong>Flat No:</strong> {{ selectedFlat }}</p>
+                    <p><strong>Owner:</strong> John Doe</p>
+                    <p><strong>Type:</strong> 2BHK</p>
+                    <p><strong>Status:</strong> Occupied</p>
+                    <button (click)="closePopup()">Close</button>
+                    </div>
+                </div>
+          </div>
+          <div *ngSwitchCase="'society'">
+            <div class="table-container">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Resident ID</th>
+                      <th>Name</th>
+                      <th>Flat no.</th>
+                      <th>Type</th>
+                      <th>Move-in Date</th>
+                      <th>Status</th>
+                      <th>Bill due</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of data" class="text-center">
+                      <td class="border px-4 py-2">{{ user.userId }}</td>
+                      <td class="border px-4 py-2">{{ user.userName }}</td>
+                      <td class="border px-4 py-2">{{ user.userEmail }}</td>
+                      <td class="border px-4 py-2">{{ user.userContact }}</td>
+                      <td class="border px-4 py-2">{{ user.userAddress }}</td>
+                      <td class="border px-4 py-2">{{ user.govtIdNo }}</td>
+                      <td class="border px-4 py-2">{{ user.societyId }}</td>
+                      <td class="border px-4 py-2">{{ user.status }}</td>
+                    </tr>
+                 
+                  </tbody>
+                </table>
+              </div>
+          </div>
+    </main>
+
+  </div>
+
+

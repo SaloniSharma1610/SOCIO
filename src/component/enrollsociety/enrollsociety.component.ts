@@ -19,21 +19,16 @@ import { HttpClient } from '@angular/common/http';
 export class EnrollsocietyComponent implements OnInit {
 
   enrollForm:FormGroup;
-  submitted:boolean=false;
   showPassword: boolean = false;
+  message:string='';
 
   constructor(private http:HttpserviceService,private formBuilder: FormBuilder){
     this.enrollForm=this.formBuilder.group({
       societyName:new FormControl('',[Validators.required]),
       societyAddress:new FormControl('',[Validators.required]),
       societyRegNo:new FormControl('',[Validators.required]),
-      userName:new FormControl('',[Validators.required]),
-      contactNo:new FormControl('',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]),
-      email:new FormControl('',[Validators.required,  Validators.email]),
-      address:new FormControl('',[Validators.required]),
+      noOfFlats:new FormControl('',[Validators.required]),
       govtIdNo:new FormControl('',[Validators.required]),
-      gender:new FormControl('',[Validators.required]),
-      password:new FormControl('',[Validators.required, Validators.minLength(8),Validators.maxLength(10),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%&*]).{8,10}$/)])
     });
   }
 
@@ -48,21 +43,20 @@ export class EnrollsocietyComponent implements OnInit {
 
   Onsubmit(){
     if (this.enrollForm.valid) {
-      this.submitted = true; // Show success message
-      setTimeout(() => {
-        this.submitted = false; // Hide after 3 seconds
-        this.enrollForm.reset(); // Reset form
-      }, 3000);
-    }
-
-    this.http.enrollSociety(this.enrollForm.value).subscribe((val:any)=>{
-      console.log("society enrolled",val);
-      this.enrollForm.reset();
-    });
+      this.http.enrollSociety(this.enrollForm.value).subscribe(
+        (val:any)=>{
+            this.message="Your society request has been registered with ID "+val.societyId+" successfully!"
+        },
+        ((error:any)=>{
+          this.message=error;
+        }) 
+      );
+    } 
   }
 
   closePopup() {
-    this.submitted = false;
+    this.message="";
+    this.enrollForm.reset();
   }
 
 

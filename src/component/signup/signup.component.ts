@@ -18,16 +18,14 @@ export class SignupComponent {
   
   showPassword: boolean = false;
   signupForm:FormGroup;
-  submitted:boolean=false;
-  
+  submitteduser:string="";
   society:string="";
   socityOption: any[] = [];
   
 
     constructor(private http:HttpserviceService,private formBuilder: FormBuilder){  
       this.signupForm=this.formBuilder.group({
-        userName:new FormControl('',[Validators.required]),
-        societyId:new FormControl(this.society,Validators.required),
+          fullName:new FormControl('',[Validators.required]),
           userEmail:new FormControl('',[Validators.required,Validators.email]),
           userContact:new FormControl('',[Validators.required,Validators.pattern(/^[6789]\d{9}$/)]),
           userAddress:new FormControl('',[Validators.required]),
@@ -35,7 +33,6 @@ export class SignupComponent {
           password:new FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(10),Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%&*]).{8,10}$/)]),
           isAgree:new FormControl(false,[Validators.required])
         });
-      // this.fetchAllSocietyOptions();
     }
 
 
@@ -47,26 +44,15 @@ export class SignupComponent {
     this.showPassword = !this.showPassword;
   }
   closePopup() {
-    this.submitted = false;
+    this.submitteduser = "";
+    this.signupForm.reset();
   }
-
-  //   // fetchAllSocietyOptions(){
-  //   //   this.http.getAllSocietyIds().subscribe((val:any)=>{
-  //   //     val.forEach((element:any) => {
-  //   //       let temp={name:element}
-  //   //       this.socityOption.push(temp);
-          
-  //   //     });
-  //   //   });
-    // }
 
   Onsubmit(){
     if (this.signupForm.valid) {
-      this.submitted = true; // Show success message
-      setTimeout(() => {
-        this.submitted = false; // Hide after 3 seconds
-        this.signupForm.reset(); // Reset form
-      }, 3000);
+       this.http.registerUser(this.signupForm.value).subscribe((val:any)=>{
+        this.submitteduser=val.userName;
+       })
     }
 
   } 

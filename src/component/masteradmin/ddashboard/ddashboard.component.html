@@ -1,0 +1,24 @@
+
+<div class="main-content">
+    
+    <!-- Statistics -->
+    <div class="statistics">
+      <div class="stat-card" *ngFor="let society of societyList" (click)="openSocietyDetails(society)">
+        <h5>Society no. {{society.societyId}}</h5>
+        <h2>{{society.societyName}}</h2>
+      </div>
+    </div>
+    
+
+     <!-- Pop-Up -->
+     <div class="popup-overlay" *ngIf="this.selectedSociety" (click)="closePopup()">
+      <div class="popup" (click)="$event.stopPropagation()">
+        <h3>Society Details</h3>
+        <p><strong>Society ID : </strong> {{selectedSociety.societyId}}</p>
+        <p><strong>No.of Flats : </strong> {{selectedSociety.noOfFlats}}</p>
+        <p><strong>Society Address : </strong> {{selectedSociety.societyAddress}}</p>
+        <p><strong>Society RegNo. : </strong> {{selectedSociety.societyRegNo}}</p>
+        <button (click)="closePopup()">Close</button>
+      </div>
+    </div>
+</div>

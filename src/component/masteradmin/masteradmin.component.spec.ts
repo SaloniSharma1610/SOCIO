@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoutenavComponent } from './routenav.component';
+import { MasteradminComponent } from './masteradmin.component';
 
-describe('RoutenavComponent', () => {
-  let component: RoutenavComponent;
-  let fixture: ComponentFixture<RoutenavComponent>;
+describe('MasteradminComponent', () => {
+  let component: MasteradminComponent;
+  let fixture: ComponentFixture<MasteradminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoutenavComponent]
+      imports: [MasteradminComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RoutenavComponent);
+    fixture = TestBed.createComponent(MasteradminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

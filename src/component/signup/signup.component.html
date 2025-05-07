@@ -1,12 +1,12 @@
 <app-navbar></app-navbar>
   <div class="container">
     <div class="registration-box">
-      <h2>Create Account</h2>
+      <h2>User   Onboarding</h2>
       <form id="registration-form" [formGroup]="signupForm" (ngSubmit)="Onsubmit()">
         <div class="input-group">
-          <label for="username">Full Name</label>
-          <input type="text" id="username" placeholder="Enter your name" formControlName="userName" required>
-          <small *ngIf="this.signupForm.controls['userName'].invalid && (this.signupForm.controls['userName'].touched||this.signupForm.controls['userName'].dirty)">*required field</small>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter your name" formControlName="fullName" required>
+          <small *ngIf="this.signupForm.controls['fullName'].invalid && (this.signupForm.controls['fullName'].touched||this.signupForm.controls['fullName'].dirty)">*required field</small>
         </div>
 
         <div class="input-group">
@@ -16,17 +16,6 @@
             <span *ngIf="this.signupForm.controls['userEmail'].errors?.['required']">*required field</span>
             <span *ngIf="this.signupForm.controls['userEmail'].errors?.['email']">*Please enter valid email</span>
         </small>
-</div>
-
-        <div class="input-group">
-            <label for="society">Select Society</label>
-            <select class="input-group" id="society" formControlName="societyId" required>
-              <option value="">Select a society</option>
-              <option value="society1" >Society 1</option>
-              <option value="society2">Society 2</option>
-              <option value="society3">Society 3</option>
-            </select>
-            <small *ngIf="this.signupForm.controls['societyId'].invalid && (this.signupForm.controls['societyId'].touched||this.signupForm.controls['societyId'].dirty)">*required field</small>
         </div>
 
         <div class="input-group">
@@ -86,9 +75,9 @@
     </div>
   </div>
 
-  <div class="modal" *ngIf="submitted">
+  <div class="modal" *ngIf="submitteduser">
     <div class="modal-content">
-        <p>Successfully Registered!</p>
+        <p>Successfully Registered with User Name {{submitteduser}} and the password you have set.</p>
         <button (click)="closePopup()">OK</button>
     </div>
 </div>
